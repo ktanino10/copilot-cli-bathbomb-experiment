@@ -100,12 +100,37 @@ def extract_shapes(img_path):
     cy, cx = ys.mean(), xs.mean()
     radius = np.sqrt((xs - cx)**2 + (ys - cy)**2).max()
 
-    # Create filled circle mask mathematically
+    # Grid for distance calculations
+    Y_grid, X_grid = np.mgrid[:arr.shape[0], :arr.shape[1]]
+    dist = np.sqrt((X_grid - cx)**2 + (Y_grid - cy)**2)
     Y, X = np.ogrid[:arr.shape[0], :arr.shape[1]]
     filled = ((X - cx)**2 + (Y - cy)**2) <= radius**2
+    octo_all = filled & ~dark  # cat + outer ring (connected)
 
-    # Octocat = inside the circle AND not dark
-    octo = filled & ~dark
+    # ── Extract cat-only (remove the outer anti-aliased ring) ──
+    # Step 1: distance-based seed (histogram dip at ~155px separates cat from ring)
+    cat = octo_all & (dist <= 155)
+
+    # Step 2: flood-fill grow into adjacent white pixels, bounded by dark
+    from scipy.ndimage import binary_dilation as _bd, label as _lb
+    for _ in range(50):
+        expanded = _bd(cat, iterations=1)
+        new_cat = expanded & octo_all & (dist <= radius - 10)
+        if new_cat.sum() == cat.sum():
+            break
+        cat = new_cat
+
+    # Step 3: find disconnected cat parts (e.g. tentacle) and add them
+    remaining = (dist <= radius - 5) & ~dark & ~cat
+    labels, n = _lb(remaining)
+    for lbl in range(1, n + 1):
+        comp = labels == lbl
+        if comp.sum() > 200 and dist[comp].mean() < 200:
+            cat |= comp
+            print(f"    + added disconnected part ({comp.sum()} px)")
+
+    octo = cat
+    print(f"    Cat-only: {octo.sum()} px (removed outer ring)")
 
     def to_polys(mask, min_area=100):
         cs = measure.find_contours(mask.astype(float), 0.5)
