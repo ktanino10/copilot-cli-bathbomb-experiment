@@ -1,6 +1,3 @@
-# STL output files
-mold_*.stl
-
 # Python
 __pycache__/
 *.pyc
