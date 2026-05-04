@@ -46,7 +46,7 @@ FLANGE_T      =   4.0   # flange thickness (in Z direction)
 
 PIN_DIA       =   4.0   # alignment dowel diameter
 PIN_LEN       =   6.0   # dowel length protruding above flange
-PIN_CLEARANCE =   0.3   # extra radius/depth for the matching hole on side B
+PIN_CLEARANCE =   0.8   # extra radius/depth for the matching hole on side B (loose fit)
 
 NSEG          = 64
 
