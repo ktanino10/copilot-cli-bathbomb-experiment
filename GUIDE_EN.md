@@ -53,7 +53,7 @@ opens like a shell so the bath bomb pops out cleanly.
 
 | Phase | Task | Time |
 |-------|------|------|
-| **A. 3D Print** | Print one of each STL (halves A and B) | 4–6 hours |
+| **A. 3D Print** | Print one of each STL (halves A and B) | 2–3 hours |
 | **B. Shopping** | Buy materials (parallel with A) | — |
 | **C. Mold Prep** | Sand interior + flatten flange | 20 min |
 | **D. Crafting** | Mix → fill halves → close clamshell | 1–1.5 hours |

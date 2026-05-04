@@ -36,7 +36,7 @@ import trimesh
 # ── Dimensions (mm) ──────────────────────────────────────
 WALL          =   4.0   # wall thickness around cavity
 FLOOR         =   4.0   # floor thickness (back of each half)
-DEPTH_HALF    =  20.0   # cavity depth per half (total bath bomb thickness ≈ 40mm)
+DEPTH_HALF    =  10.0   # cavity depth per half (total bath bomb thickness ≈ 20mm)
 DRAFT_DEG     =   8.0   # draft angle (top wider than bottom for easy release)
 FILLET_R      =   3.0   # corner rounding radius on cat silhouette
 TARGET_WIDTH  =  80.0   # target overall cat-silhouette width (mm)
