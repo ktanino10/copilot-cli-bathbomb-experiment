@@ -12,17 +12,23 @@
 ### 概要
 
 GitHub のロゴ（Octocat）の画像から、猫型バスボム用の3Dプリント型を自動生成します。
-中に防水加工した写真（9cm×5.5cm）を仕込み、お湯に溶けるとサプライズが出てくるギフト用バスボムです。
+2分割のクラムシェル（貝殻型）構造で、乾燥後に左右にパカッと開いてバスボムを取り出せます。
 
 ### 生成される型
 
-猫シルエット型の容器モールド（片面型）
+猫シルエットの **クラムシェル2分割型**（左右ハーフ：A・B）
 
-- 猫のシルエットに沿った壁を持つ容器型
-- 上面のみ開口（材料投入口）、底面は密閉
-- 抜き勾配5°（取り出しやすい）
-- フィレットR3mm（角を丸めてひび割れ防止）
-- 壁厚4mm・床厚4mm
+- 左右ハーフが鏡像でパーティングプレーン上で合わさる
+- 抜き勾配 **8°**（v1の5°から増、粉末材料での離型性を改善）
+- フィレット R3mm（角を丸めてひび割れ防止）
+- 壁厚 4mm・床厚 4mm
+- 外周フランジ 5mm 幅（ゴムバンドで圧着するためのリム）
+- φ4mm 位置決めピン × 4 本（ハーフAにピン、ハーフBに穴）
+- 目標サイズ：おおむね 80×80×40mm の手のひらサイズバスボム
+
+### 過去の試作（参考）
+
+第1回試作の片面コンテナ型 (`mold_cat_container.stl` / `mold_cat_container_mirrored.stl`) は履歴として残しています。失敗の経緯は [`experiments/2026-05-04-trial-01/`](experiments/2026-05-04-trial-01/) を参照。
 
 ### 使い方
 
@@ -37,8 +43,11 @@ python generate_mold.py
 ### 出力ファイル
 
 ```
-mold_cat_container.stl  — 猫型コンテナモールド（片面型）
+mold_cat_clamshell_A.stl  — クラムシェル ハーフA（位置決めピン付き）
+mold_cat_clamshell_B.stl  — クラムシェル ハーフB（ピン穴付き）
 ```
+
+両方を1部ずつプリントして1セットになります。
 
 ### 3Dプリント推奨設定
 
@@ -57,12 +66,15 @@ mold_cat_container.stl  — 猫型コンテナモールド（片面型）
 
 | 項目 | 値 |
 |------|-----|
-| キャビティ深さ | 25mm |
+| 構造 | クラムシェル2分割（左右ハーフ） |
+| キャビティ深さ | 20mm × 2（合計約40mm） |
+| 猫シルエット幅 | 約80mm |
 | 壁厚 | 4mm |
 | 床厚 | 4mm |
-| 抜き勾配 | 5° |
+| 抜き勾配 | 8° |
 | フィレット | R3mm |
-| 写真対応サイズ | 85×55mm以内 |
+| フランジ幅 / 厚さ | 5mm / 4mm |
+| 位置決めピン | φ4mm × 4本（A：ピン／B：穴） |
 
 ### 制作ガイド
 
@@ -85,18 +97,27 @@ mold_cat_container.stl  — 猫型コンテナモールド（片面型）
 
 ### Overview
 
-Automatically generates a cat-shaped (Octocat) 3D-printable bath bomb mold from the GitHub logo image.
-Includes a waterproofed photo (9cm × 5.5cm) hidden inside as a surprise gift — revealed when the bath bomb dissolves!
+Automatically generates a 3D-printable bath bomb mold in the shape of the GitHub Octocat,
+designed as a **two-piece clamshell** so the finished bath bomb pops out cleanly when the
+two halves are unclipped after drying.
 
 ### Generated Mold
 
-Single-sided cat silhouette container mold:
+Two-piece **clamshell** mold (halves A and B):
 
-- Walls follow the Octocat silhouette
-- Open top (for filling), sealed bottom
-- 5° draft angle (easy release)
-- R3mm fillets (prevents cracking)
-- 4mm walls and floor
+- Mirrored halves meeting on a flat parting plane
+- **8° draft angle** (steeper than v1's 5° — much easier release for powdery material)
+- R3mm fillets on the cat silhouette (prevents cracking)
+- 4mm walls and 4mm floor on each half
+- 5mm outer flange around the parting plane (for rubber-band clamping)
+- 4 × φ4mm alignment dowels (pegs on side A, matching holes on side B)
+- Target bath bomb size ≈ 80×80×40mm — fits in one hand
+
+### Previous Trial (kept for reference)
+
+The original single-sided container mold (`mold_cat_container.stl` /
+`mold_cat_container_mirrored.stl`) is kept in the repo as historical artifact.
+See [`experiments/2026-05-04-trial-01/`](experiments/2026-05-04-trial-01/) for what went wrong.
 
 ### Usage
 
@@ -111,8 +132,11 @@ python generate_mold.py
 ### Output
 
 ```
-mold_cat_container.stl  — Cat-shaped container mold (single-sided)
+mold_cat_clamshell_A.stl  — Clamshell half A (with alignment pegs)
+mold_cat_clamshell_B.stl  — Clamshell half B (with matching holes)
 ```
+
+Print one of each to make a complete set.
 
 ### Recommended Print Settings
 
@@ -131,12 +155,15 @@ Sand the cavity interior (#400 → #800 grit) after printing. Line with plastic 
 
 | Spec | Value |
 |------|-------|
-| Cavity depth | 25mm |
+| Structure | Two-piece clamshell (halves A + B) |
+| Cavity depth | 20mm × 2 (≈40mm total bath bomb) |
+| Cat silhouette width | ≈80mm |
 | Wall thickness | 4mm |
 | Floor thickness | 4mm |
-| Draft angle | 5° |
+| Draft angle | 8° |
 | Fillet radius | R3mm |
-| Max photo size | 85×55mm |
+| Flange width / thickness | 5mm / 4mm |
+| Alignment dowels | 4 × φ4mm (pegs on A, holes on B) |
 
 ### Crafting Guide
 
