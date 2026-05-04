@@ -273,8 +273,13 @@ def main():
     out_b = os.path.join(here, "mold_cat_clamshell_B.stl")
 
     cat = extract_cat(img_path)
-    half_a = build_half(cat, side='A')
-    half_b = build_half(cat, side='B')
+    # Half B is flipped (Y-axis 180°) when mated to half A. Pre-mirror the cavity
+    # profile in X so that, after flipping, B's cavity and pin-holes line up with
+    # A's. Without this, the asymmetric Octocat silhouette and the pin positions
+    # do not register. See issue #1.
+    cat_mirrored = affinity.scale(cat, xfact=-1, yfact=1, origin=(0, 0))
+    half_a = build_half(cat,          side='A')
+    half_b = build_half(cat_mirrored, side='B')
 
     half_a.export(out_a)
     half_b.export(out_b)
