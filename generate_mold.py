@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 """
-GitHub Octocat Bath Bomb — Cat-shaped Container Mold Generator
+GitHub Octocat Bath Bomb — Two-Piece Clamshell Mold Generator
 
-Generates a single-sided cat-shaped container mold for 3D printing.
+Generates a 2-piece clamshell mold (halves A and B) for a cat-shaped bath bomb.
+Trial 01 (see experiments/2026-05-04-trial-01/) showed that the previous
+single-sided container mold made the bath bomb impossible to release.
+The clamshell design solves this by splitting the mold along the parting plane,
+so the two halves can be opened like a shell after drying.
+
 Features:
-  - 5° draft angle for easy release
-  - R3mm fillets on all corners
-  - 4mm walls and floor
-  - Sized to fit a 90×55mm photo inside
+  - Symmetric two-piece (left/right) design with mirrored cavities
+  - 8° draft angle (steeper than v1 for powdery bath bomb material)
+  - R3mm fillets on the cat outline
+  - 4mm walls and floor on each half
+  - 5mm outer flange around the parting plane (rubber-band clamping surface)
+  - 4 alignment dowels (φ4mm pins on side A, matching holes on side B)
+  - Target outer width ≈ 80mm (hand-friendly bath bomb size)
+
+Outputs:
+  mold_cat_clamshell_A.stl  — half with alignment pins
+  mold_cat_clamshell_B.stl  — half with alignment holes
 """
 
 import os
@@ -16,20 +28,27 @@ import numpy as np
 from PIL import Image
 from scipy.ndimage import binary_dilation, label
 from skimage import measure
-from shapely.geometry import Polygon, MultiPolygon
+from shapely.geometry import Polygon, MultiPolygon, Point
 from shapely.ops import unary_union
 from shapely import affinity
 import trimesh
 
 # ── Dimensions (mm) ──────────────────────────────────────
-WALL       =   4.0   # wall thickness
-FLOOR      =   4.0   # floor thickness
-DEPTH      =  25.0   # cavity depth
-DRAFT_DEG  =   5.0   # draft angle (top wider than bottom)
-FILLET_R   =   3.0   # corner rounding radius
-PHOTO_LONG =  90.0   # photo long side (mm)
-PHOTO_SHORT=  55.0   # photo short side (mm)
-NSEG       = 128
+WALL          =   4.0   # wall thickness around cavity
+FLOOR         =   4.0   # floor thickness (back of each half)
+DEPTH_HALF    =  20.0   # cavity depth per half (total bath bomb thickness ≈ 40mm)
+DRAFT_DEG     =   8.0   # draft angle (top wider than bottom for easy release)
+FILLET_R      =   3.0   # corner rounding radius on cat silhouette
+TARGET_WIDTH  =  80.0   # target overall cat-silhouette width (mm)
+
+FLANGE_W      =   5.0   # flange width extending outward from outer wall
+FLANGE_T      =   4.0   # flange thickness (in Z direction)
+
+PIN_DIA       =   4.0   # alignment dowel diameter
+PIN_LEN       =   6.0   # dowel length protruding above flange
+PIN_CLEARANCE =   0.3   # extra radius/depth for the matching hole on side B
+
+NSEG          = 64
 
 
 # ── Image → cat polygon ─────────────────────────────────
@@ -83,7 +102,8 @@ def extract_cat(img_path):
             polys.append(p)
     poly = unary_union(polys)
 
-    # Scale: circle diameter → 130mm, flip Y
+    # Initial scale (centre, flip Y, normalise circle to 130mm so buffer
+    # operations stay in a reasonable mm range), then re-scale to TARGET_WIDTH.
     bx = poly.bounds
     c_center = ((bx[0]+bx[2])/2, (bx[1]+bx[3])/2)
     scale = 130.0 / (radius * 2)
@@ -99,47 +119,91 @@ def extract_cat(img_path):
         poly = max(poly.geoms, key=lambda g: g.area)
     poly = poly.simplify(0.3, preserve_topology=True)
 
-    # Ensure photo fits (need ≥ PHOTO_LONG + 2mm in at least one axis)
+    # Re-scale so the cat's largest dimension matches TARGET_WIDTH
     bx0, by0, bx1, by1 = poly.bounds
     w, h = bx1 - bx0, by1 - by0
-    needed = PHOTO_LONG + 2
-    if max(w, h) < needed:
-        s = needed / max(w, h)
-        poly = affinity.scale(poly, s, s, origin=(0, 0))
-        bx0, by0, bx1, by1 = poly.bounds
-        w, h = bx1 - bx0, by1 - by0
-        print(f"    Scaled to {w:.0f}×{h:.0f} mm (photo fit)")
+    target_scale = TARGET_WIDTH / max(w, h)
+    poly = affinity.scale(poly, target_scale, target_scale, origin=(0, 0))
 
+    # Recentre at origin
+    bx0, by0, bx1, by1 = poly.bounds
+    poly = affinity.translate(poly, -(bx0+bx1)/2, -(by0+by1)/2)
+
+    bx0, by0, bx1, by1 = poly.bounds
+    w, h = bx1 - bx0, by1 - by0
     holes = len(list(poly.interiors))
     print(f"    Cat: {w:.0f}×{h:.0f} mm, {len(poly.exterior.coords)} verts, {holes} holes")
     return poly
 
 
-# ── Mold generation ─────────────────────────────────────
+# ── Pin / hole helpers ──────────────────────────────────
 
-def build_mold(cat_poly):
-    """Build a cat-shaped container mold with draft angle."""
-    print("\n🐱  Building cat-shaped container mold …")
+def pick_pin_positions(flange_outer, outer_top, n_samples=240):
+    """Find 4 pin positions inside the flange ring (flange_outer − outer_top).
 
-    draft_offset = DEPTH * math.tan(math.radians(DRAFT_DEG))
-    print(f"    Draft offset at rim: {draft_offset:.1f} mm")
+    Walks outward from the centroid in 4 cardinal directions and places each
+    pin at the radial midpoint of the ring along that direction, so the pins
+    sit on the flange and never on the cavity wall.
+    """
+    cx, cy = flange_outer.centroid.x, flange_outer.centroid.y
+    bx0, by0, bx1, by1 = flange_outer.bounds
+    max_r = max(bx1 - bx0, by1 - by0)
 
-    # Outer shell uses the TOP (widest) cavity shape + WALL
+    positions = []
+    for angle_deg in (0, 90, 180, 270):
+        a = math.radians(angle_deg)
+        cos_a, sin_a = math.cos(a), math.sin(a)
+        ring_radii = []
+        for i in range(1, n_samples + 1):
+            r = max_r * (i / n_samples)
+            x, y = cx + r * cos_a, cy + r * sin_a
+            pt = Point(x, y)
+            if flange_outer.contains(pt) and not outer_top.contains(pt):
+                ring_radii.append(r)
+        if ring_radii:
+            r_mid = (min(ring_radii) + max(ring_radii)) / 2
+            positions.append((cx + r_mid * cos_a, cy + r_mid * sin_a))
+    return positions
+
+
+# ── Mold half generation ────────────────────────────────
+
+def build_half(cat_poly, side='A'):
+    """Build one half of the clamshell mold.
+
+    side='A' produces alignment pins on top of the flange.
+    side='B' produces matching holes recessed into the flange.
+    Both halves are otherwise identical (same outer profile, same cavity).
+    """
+    print(f"\n🐱  Building clamshell half {side} …")
+
+    draft_offset = DEPTH_HALF * math.tan(math.radians(DRAFT_DEG))
+    print(f"    Draft offset at parting plane: {draft_offset:.1f} mm")
+
     cavity_top = cat_poly.buffer(draft_offset)
     outer_top = cavity_top.buffer(WALL)
-    for p in [cavity_top, outer_top]:
-        if isinstance(p, MultiPolygon):
-            p = max(p.geoms, key=lambda g: g.area)
+    flange_outer = outer_top.buffer(FLANGE_W)
 
     if isinstance(outer_top, MultiPolygon):
         outer_top = max(outer_top.geoms, key=lambda g: g.area)
+    if isinstance(flange_outer, MultiPolygon):
+        flange_outer = max(flange_outer.geoms, key=lambda g: g.area)
 
-    # Outer solid (full height)
-    outer = trimesh.creation.extrude_polygon(outer_top, FLOOR + DEPTH)
+    H = FLOOR + DEPTH_HALF  # total height of the half (back face → parting plane)
 
-    # Tapered cavity: stack slices from bottom (narrow) to top (wide)
+    # Outer body (full height) extruded from outer_top profile
+    outer = trimesh.creation.extrude_polygon(outer_top, H)
+
+    # Flange ring at parting plane: extrude flange_outer profile to FLANGE_T,
+    # then translate so its top surface is flush with the parting plane (z = H).
+    flange = trimesh.creation.extrude_polygon(flange_outer, FLANGE_T)
+    flange.apply_translation([0, 0, H - FLANGE_T])
+
+    body = trimesh.boolean.union([outer, flange], engine="manifold")
+
+    # Tapered cavity: stack slices from back (narrow) to parting plane (wide)
     n_slices = 10
-    slice_h = DEPTH / n_slices
+    slice_h = DEPTH_HALF / n_slices
     slices = []
     for i in range(n_slices):
         t = i / max(n_slices - 1, 1)
@@ -155,41 +219,72 @@ def build_mold(cat_poly):
     for s in slices[1:]:
         cavity = trimesh.boolean.union([cavity, s], engine="manifold")
 
-    # Mold = outer − cavity
-    mold = trimesh.boolean.difference([outer, cavity], engine="manifold")
-    mold.fix_normals()
+    half = trimesh.boolean.difference([body, cavity], engine="manifold")
 
-    b = mold.bounds
-    cw = cat_poly.bounds
-    print(f"    Outer: {b[1][0]-b[0][0]:.0f}×{b[1][1]-b[0][1]:.0f}×{b[1][2]-b[0][2]:.0f} mm")
-    print(f"    Cavity bottom: {cw[2]-cw[0]:.0f}×{cw[3]-cw[1]:.0f} mm")
-    print(f"    Cavity top:    {cw[2]-cw[0]+2*draft_offset:.0f}×{cw[3]-cw[1]+2*draft_offset:.0f} mm")
-    print(f"    Wall: {WALL:.0f} mm, Floor: {FLOOR:.0f} mm")
-    print(f"    Draft: {DRAFT_DEG:.0f}°, Fillet: R{FILLET_R:.0f} mm")
-    print(f"    Watertight: {mold.is_watertight}")
-    return mold
+    # Alignment pins / holes on the flange
+    pin_positions = pick_pin_positions(flange_outer, outer_top)
+    if len(pin_positions) < 4:
+        print(f"    ⚠️  Only {len(pin_positions)} pin positions found")
+
+    if side == 'A':
+        for (x, y) in pin_positions:
+            pin = trimesh.creation.cylinder(
+                radius=PIN_DIA / 2, height=PIN_LEN, sections=24
+            )
+            pin.apply_translation([x, y, H + PIN_LEN / 2])
+            half = trimesh.boolean.union([half, pin], engine="manifold")
+    elif side == 'B':
+        hole_r = PIN_DIA / 2 + PIN_CLEARANCE
+        hole_depth = PIN_LEN + PIN_CLEARANCE
+        for (x, y) in pin_positions:
+            hole = trimesh.creation.cylinder(
+                radius=hole_r, height=hole_depth + 0.2, sections=24
+            )
+            # Hole opens at the parting plane (z = H) and goes down into flange
+            hole.apply_translation([x, y, H - (hole_depth + 0.2) / 2 + 0.1])
+            half = trimesh.boolean.difference([half, hole], engine="manifold")
+    else:
+        raise ValueError(f"side must be 'A' or 'B', got {side!r}")
+
+    half.fix_normals()
+
+    b = half.bounds
+    print(f"    Outer:  {b[1][0]-b[0][0]:.0f}×{b[1][1]-b[0][1]:.0f}×{b[1][2]-b[0][2]:.0f} mm")
+    print(f"    Cavity: bottom {cat_poly.bounds[2]-cat_poly.bounds[0]:.0f}×"
+          f"{cat_poly.bounds[3]-cat_poly.bounds[1]:.0f} mm → "
+          f"top +{2*draft_offset:.1f} mm each axis")
+    print(f"    Flange: {FLANGE_W:.0f} mm wide × {FLANGE_T:.0f} mm thick")
+    print(f"    Pins:   {len(pin_positions)} × φ{PIN_DIA:.0f} mm "
+          f"({'pegs ↑' if side == 'A' else 'holes ↓'})")
+    print(f"    Watertight: {half.is_watertight}")
+    return half
 
 
 # ── Main ─────────────────────────────────────────────────
 
 def main():
-    print("=" * 52)
-    print("  🛁  Octocat Bath Bomb — Mold Generator")
-    print("=" * 52)
+    print("=" * 56)
+    print("  🛁  Octocat Bath Bomb — Clamshell Mold Generator")
+    print("=" * 56)
 
     here = os.path.dirname(os.path.abspath(__file__))
     img_path = os.path.join(here, "GitHub-Mark-ea2971cee799.png")
-    out_path = os.path.join(here, "mold_cat_container.stl")
+    out_a = os.path.join(here, "mold_cat_clamshell_A.stl")
+    out_b = os.path.join(here, "mold_cat_clamshell_B.stl")
 
     cat = extract_cat(img_path)
-    mold = build_mold(cat)
-    mold.export(out_path)
+    half_a = build_half(cat, side='A')
+    half_b = build_half(cat, side='B')
 
-    print(f"\n    ✅ {os.path.basename(out_path)}")
-    print(f"       ({len(mold.vertices)} verts, {len(mold.faces)} faces)")
-    print(f"\n{'='*52}")
-    print("  ✨  Open in your slicer and print!")
-    print(f"{'='*52}")
+    half_a.export(out_a)
+    half_b.export(out_b)
+
+    print(f"\n    ✅ {os.path.basename(out_a)}  ({len(half_a.vertices)} verts, {len(half_a.faces)} faces)")
+    print(f"    ✅ {os.path.basename(out_b)}  ({len(half_b.vertices)} verts, {len(half_b.faces)} faces)")
+    print(f"\n{'='*56}")
+    print("  ✨  Print both halves, line each cavity, fill, clamp,")
+    print("      let dry, then unclamp and pop the bath bomb out!")
+    print(f"{'='*56}")
 
 
 if __name__ == "__main__":
