@@ -22,11 +22,12 @@
 
 GitHub を退職する同僚（**元 Microsoft 社員**）への餞別ギフトとして製作。
 Octocat の形をした **Microsoft ロゴカラー（赤・緑・青・黄）** の 4 色バスボムを作り、
-マリオの「はてなブロック」風の 3D プリント箱に詰めて贈ることに。
+**Lush で見つけた期間限定の「マリオはてなブロック」型ギフトボックス**に詰めて
+贈ることに。
 
-> 💡 万が一手作りバスボムが失敗しても恥をかかないよう、保険として
-> Lush の「ヨッシーの卵」バスボムと泡ボムも 1 個ずつ同梱。
-> 結果として手作りも成功したので、両方贈ることになりました。
+> 💡 ギフト箱を買いに **Lush** に立ち寄った際、ついでに「ヨッシーの卵」バスボムと
+> 泡ボムも 1 個ずつ購入。「万が一手作りが失敗しても恥をかかないように」という
+> 保険として同梱しました。結果的に手作りも成功したので、両方とも贈ることに。
 
 ---
 
@@ -103,7 +104,11 @@ v1 元データ          Bambu Studio で左右分割
 |---|---|
 | ![色付き粉俯瞰](01-color-mixing-overhead.jpg) | ![色付き粉別アングル](02-color-mixing-alt.jpg) |
 
-🎥 **混ぜている様子の動画 (YouTube Shorts)**: <https://www.youtube.com/shorts/3kC7oP4pvtE>
+🎥 **混ぜている様子の動画**:
+
+<video src="videos/color-mixing.mp4" controls width="360" playsinline></video>
+
+> 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/3kC7oP4pvtE) / または [`videos/color-mixing.mp4`](videos/color-mixing.mp4) を直接ダウンロード
 
 ラップでボウルをカバーして粉の飛散と乾燥を防止。
 
@@ -180,7 +185,10 @@ v1 元データ          Bambu Studio で左右分割
 
 #### フェーズ E: ギフトラッピング 🎁
 
-3D プリント製の **マリオはてなブロック箱** に詰めて、ふたに Octocat ステッカーを貼って完成。
+**Lush で買った期間限定の「マリオはてなブロック」型ギフトボックス**に詰めて、
+ふたに Octocat ステッカーを貼って完成。
+（ボックスは 3D プリント製ではなく既製品です。Mario × LUSH コラボの
+期間限定商品として店頭に並んでいたものを購入しました）
 
 | ブロック箱（前） | フタを閉じて完成 |
 |---|---|
@@ -191,7 +199,11 @@ v1 元データ          Bambu Studio で左右分割
 形が崩れてしまったバスボム（離型ミスのプロトタイプ）を実際にお風呂に投入し、
 **ちゃんとシュワシュワ反応するか** を検証。
 
-🎥 **検証動画 (YouTube Shorts)**: <https://www.youtube.com/shorts/VPH1sM8e9gE>
+🎥 **検証動画**:
+
+<video src="videos/fizz-test.mp4" controls width="360" playsinline></video>
+
+> 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/VPH1sM8e9gE) / または [`videos/fizz-test.mp4`](videos/fizz-test.mp4) を直接ダウンロード
 
 結果: **見た目が崩れていても化学反応は問題なく機能** ✨
 重曹 + クエン酸 + 水 → 二酸化炭素の発泡反応はバスボムの形状とは無関係なので、
@@ -253,12 +265,13 @@ This trial built on the lessons from [Trial 01 (failure)](../2026-05-04-trial-01
 
 These bath bombs were made as a farewell gift for **a colleague leaving GitHub
 (formerly at Microsoft)**. To honor both employers, four Octocats were cast in the
-**Microsoft logo colors (red, green, blue, yellow)** and packed into a 3D-printed
-**Mario question-block** gift box.
+**Microsoft logo colors (red, green, blue, yellow)** and packed into a
+**Mario "question-block" gift box found as a Lush limited-edition item**.
 
-> 💡 As insurance against a possible failure of the homemade bath bombs,
-> a Lush "Yoshi's Egg" bath bomb and a foam bath bomb were included as backups.
-> The homemade ones turned out great — so both went into the gift.
+> 💡 While picking up the question-block box at **Lush**, we also bought a
+> Lush "Yoshi's Egg" bath bomb and a foam bath bomb as a backup — insurance
+> in case the homemade ones turned out badly. They didn't, so both the
+> homemade and the Lush bath bombs went into the final gift.
 
 ---
 
@@ -335,7 +348,11 @@ fragrance spray.
 |---|---|
 | ![Powders, overhead](01-color-mixing-overhead.jpg) | ![Powders, alt angle](02-color-mixing-alt.jpg) |
 
-🎥 **Video of the mixing (YouTube Shorts)**: <https://www.youtube.com/shorts/3kC7oP4pvtE>
+🎥 **Video of the mixing**:
+
+<video src="videos/color-mixing.mp4" controls width="360" playsinline></video>
+
+> If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/3kC7oP4pvtE) or download [`videos/color-mixing.mp4`](videos/color-mixing.mp4) directly.
 
 Plastic wrap kept the bowls dust-free and dry until packing.
 
@@ -418,8 +435,9 @@ Either packed individually or as a 4-color set in a white box with peanut packin
 
 #### Phase E — Gift wrapping 🎁
 
-The set was placed inside a 3D-printed **Mario question-block box** with an
-Octocat sticker on the lid.
+The set was placed inside the **Mario "question-block" gift box bought at Lush**
+(a Mario × LUSH limited-edition item — *not* 3D printed) with an Octocat sticker
+on the lid.
 
 | Block (front view) | Final lid closed |
 |---|---|
@@ -430,7 +448,11 @@ Octocat sticker on the lid.
 We dropped a misshapen prototype (a demolding failure) into actual bath water to check
 whether **the fizz reaction still worked** despite the broken shape.
 
-🎥 **Test video (YouTube Shorts)**: <https://www.youtube.com/shorts/VPH1sM8e9gE>
+🎥 **Test video**:
+
+<video src="videos/fizz-test.mp4" controls width="360" playsinline></video>
+
+> If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/VPH1sM8e9gE) or download [`videos/fizz-test.mp4`](videos/fizz-test.mp4) directly.
 
 Result: **the chemistry works fine even when the bath bomb is cosmetically broken** ✨
 Baking soda + citric acid + water → CO₂ fizz is independent of the bath bomb's shape,
