@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Octocat バスボム 離型ガイド</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success { color: #1e8e3e; }
+    .error   { color: #d93025; }
+    .image-container img { max-width: 480px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+    .image-container.small img { max-width: 320px; }
+    figure { margin: 16px 0; }
+    figcaption { font-size: 13px; color: #5f6368; margin-top: 4px; }
+    .label-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 16px; }
+    .label-pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+    .label-pill.ng  { background: #fce8e6; color: #c5221f; }
+    .label-pill.ok  { background: #e6f4ea; color: #137333; }
+    .label-pill.tip { background: #e8f0fe; color: #1a73e8; }
+  </style>
+</head>
+<body>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="octocat-bathbomb-demolding"
+                  title="Octocat バスボム 離型ガイド"
+                  environment="web"
+                  feedback-link="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/issues">
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="ようこそ" duration="1">
+      <p>3D プリント型を使って自作した <strong>Octocat 形のバスボム</strong> を、
+         <strong>崩さずに型から取り出すための公式ガイド</strong>です。</p>
+
+      <p>このガイドは
+         <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment" target="_blank">
+         <code>copilot-cli-bathbomb-experiment</code></a>
+         リポジトリの第2回試作 (Trial 02) における実体験を元にまとめています。</p>
+
+      <h2 is-upgraded>このガイドで分かること</h2>
+      <ul>
+        <li>離型でやってはいけない 2 つの NG 動作</li>
+        <li>片面だけきれいに外す正しい手順</li>
+        <li><strong>そもそも完全に外さない</strong>という選択肢（おすすめ）</li>
+        <li>万が一崩れてしまったときの救済策</li>
+      </ul>
+
+      <h2 is-upgraded>対象読者</h2>
+      <ul>
+        <li>Octocat 形の手作りバスボムを完成させた人</li>
+        <li>これから離型工程に入る人</li>
+        <li>誰かにギフトとして渡したい人</li>
+      </ul>
+
+      <aside class="warning">
+        <p><strong>⚠️ 重要</strong>: Octocat の<strong>耳・腕・触手</strong>は非常に
+           折れやすい部位です。「一気に外す」「斜めに引く」と、ほぼ確実に崩れます。
+           落ち着いてゆっくり進めましょう。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="準備するもの" duration="1">
+      <h2 is-upgraded>必要なもの</h2>
+      <ul>
+        <li>✅ <strong>完成した Octocat バスボム入りの 3D プリント型</strong>
+            （ゴムバンドで圧着したまま、半日〜1 日乾燥済み）</li>
+        <li>✅ フラットな机</li>
+        <li>✅ 落ち着いた手元（焦りは禁物）</li>
+      </ul>
+
+      <h2 is-upgraded>あると良いもの</h2>
+      <ul>
+        <li>🛁 入浴したい人 + お風呂（離型後すぐ使う／失敗時の検証用）</li>
+        <li>📦 Ziploc または密閉容器（保存・運搬用）</li>
+      </ul>
+
+      <p class="image-container small">
+        <img alt="ゴムバンドで圧着された型" src="../../img/03-mold-clamped.jpg">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ 乾燥前の状態。ここからスタート。</p>
+
+      <aside class="special">
+        <p><strong>💡 ヒント</strong>: 乾燥が不十分だと表面がボロボロ崩れやすくなります。
+           最低でも半日、できれば丸 1 日待つと成功率が上がります。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="🚨 やってはいけないこと" duration="2">
+      <p>離型を始める前に、<strong>絶対にやってはいけない 2 つの動作</strong>を覚えてください。
+         これさえ避ければ、半分は成功したようなものです。</p>
+
+      <h2 is-upgraded>NG その 1：上下に一気に引き剥がす</h2>
+      <div class="label-row">
+        <span class="label-pill ng">❌ 結果：耳・腕・触手が折れる</span>
+      </div>
+      <p>「パカッ」と勢いよく開けたくなりますが、Octocat の細部はバスボム本体の
+         脆さに耐えられず、ほぼ確実に折れます。</p>
+
+      <h2 is-upgraded>NG その 2：型を横方向にスライドさせる</h2>
+      <div class="label-row">
+        <span class="label-pill ng">❌ 結果：表面の凹凸が削れて全体が崩壊</span>
+      </div>
+      <p>横にスライドすると Octocat の凹凸が型側壁に擦れて、表面が削れたり
+         パキッと折れたりします。</p>
+
+      <h2 is-upgraded>NG その 3（番外）：焦って強引に取り出す</h2>
+      <div class="label-row">
+        <span class="label-pill ng">❌ 結果：人によっては全部崩れる</span>
+      </div>
+      <p>これが一番ありがちな失敗です。「乾いてるはずだから大丈夫」と思って
+         勢いをつけると、内部の水分のムラで割れます。</p>
+
+      <aside class="warning">
+        <p><strong>⚠️ 心構え</strong>: 「離型は工作で一番繊細な工程」と思って臨むこと。
+           次のステップで正しい手順を解説します。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="✅ 推奨手順 — 片面だけ外す" duration="3">
+      <p>NG が分かったところで、<strong>正しい片面外しの 4 ステップ</strong>です。</p>
+
+      <h2 is-upgraded>ステップ 1：型の背面を下にして机に置く</h2>
+      <p>Octocat の <strong>顔がある面（凹凸が深い側）</strong>を上に、
+         <strong>背面（フラット側）を机に</strong>。</p>
+
+      <h2 is-upgraded>ステップ 2：腕がついている側の型半分をしっかり固定</h2>
+      <p>利き手じゃない方の手で、Octocat の腕の凹凸が刻まれている方の
+         型半分を、机に押さえつけるようにしっかりホールドします。</p>
+
+      <h2 is-upgraded>ステップ 3：もう片方の型半分を真上にゆっくり持ち上げる</h2>
+      <div class="label-row">
+        <span class="label-pill ok">✅ ポイント：完全に垂直、かつスローモーションで</span>
+      </div>
+      <p>持ち上げる側は、<strong>真上方向（鉛直方向）</strong>のみ。
+         少しでも斜め方向に力が入ると、ステップ 2 で固定したはずの
+         バスボム本体まで一緒に持ち上がってしまいます。</p>
+
+      <h2 is-upgraded>ステップ 4：顔と腕の隙間に沿わせる</h2>
+      <p>Octocat には顔と腕の間に <strong>自然な隙間（造形上のくびれ）</strong>があります。
+         この隙間にうまく沿わせるイメージで持ち上げると、引っかかりが最小になります。</p>
+
+      <p class="image-container">
+        <img alt="型を開けて Octocat バスボムが見えている状態" src="../../img/04-demolding.jpg">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ ステップ 3 の途中。片方が外れた直後の状態。</p>
+
+      <h2 is-upgraded>うまく外れた成功例</h2>
+      <p class="image-container">
+        <img alt="成功した緑色の Octocat バスボム" src="../../img/05-success-green.jpg">
+      </p>
+
+      <aside class="special">
+        <p><strong>💡 ヒント</strong>: ステップ 3 で「あれ、外れない？」と感じたら、
+           無理に力を入れず一度動作を止めて、固定している型を軽く机に
+           コンコンと振動させてみてください。微小な振動で密着が解けます。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="💡 おすすめ：そもそも完全に外さない運用" duration="2">
+      <p>ここからが本ガイドの<strong>個人的におすすめしたい運用</strong>です。
+         前のステップで片面は外れましたが、<strong>「もう片方の型は外さずに残す」</strong>
+         という選択肢を強くおすすめします。</p>
+
+      <h2 is-upgraded>なぜ完全に外さない方が良いのか</h2>
+      <ul>
+        <li>🎯 <strong>2 枚目の型を外すのは難易度が一段上がる</strong>。
+            人によっては高確率で崩壊します（次ステップで解説）。</li>
+        <li>🛁 <strong>フィズ反応に必要な接触面積はもう十分</strong>。
+            片面外した時点で、バスボムの表面の半分以上は外気に露出しているので、
+            お風呂に投入したら問題なくシュワシュワ反応します。
+            <a href="https://www.youtube.com/shorts/VPH1sM8e9gE" target="_blank">実証動画はこちら</a>。</li>
+        <li>📦 <strong>配送・手渡し時の破損リスクがゼロ</strong>。
+            ギフトとして人に渡すとき、型が緩衝材の役割を果たします。</li>
+        <li>✨ <strong>見た目がむしろカッコイイ</strong>。詳しくは次の節で。</li>
+      </ul>
+
+      <h2 is-upgraded>見た目論：「型ごと」のほうが美しい理由 — Dragon Shading 効果</h2>
+      <p>型のフチが Octocat の輪郭をくっきりと縁取って見えるため、いわゆる
+         <strong>ドラゴンシェーディング</strong>（セル／トゥーンシェーディングで
+         強い黒輪郭線を入れる 3D アニメ表現の技法）と近い視覚効果が生まれます。</p>
+
+      <p>代表的な比較例：</p>
+      <ul>
+        <li><em>『ドラゴンボール Z』(PS2)</em> — 普通の 3D シェーディング</li>
+        <li><em>『ドラゴンボール Z2』(PS2)</em> — キャラクターに
+            <strong>黒い輪郭線</strong>が追加され、アニメ調・劇画調が一気に強まった</li>
+      </ul>
+
+      <p class="image-container">
+        <img alt="4 色 Octocat バスボム（型ごと梱包）" src="../../img/08-set-of-four.jpg">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ 実際のギフト。4 個すべて型をつけたまま箱詰めしている。</p>
+
+      <aside class="special">
+        <p><strong>💡 おすすめの渡し方</strong>:
+           「<strong>そのまま型ごとお風呂に投入してください</strong>」と一言添えて贈ると、
+           受け取った人の心理的負担も減ります（外す手間 = 失敗リスクを背負わせない）。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="🏊 上級編：両面完全離型に挑戦" duration="3">
+      <p>「いや、どうしても完全な Octocat の姿で見せたい」という方向けの
+         <strong>上級編</strong>です。失敗リスクを承知のうえで挑戦してください。</p>
+
+      <h2 is-upgraded>基本ルールは前と同じ</h2>
+      <p>残った型半分を外す手順も、原則は前のステップとまったく同じです：</p>
+      <ol>
+        <li>外したい側の<strong>反対側</strong>を机にしっかり押さえつける
+            （今回はバスボム本体を直接押さえることになるので超慎重に）</li>
+        <li>外したい型を<strong>真上に・ゆっくり</strong>持ち上げる</li>
+        <li>顔と腕のあいだの隙間に沿って外す</li>
+      </ol>
+
+      <h2 is-upgraded>追加のコツ</h2>
+      <ul>
+        <li>🪶 <strong>力加減は前ステップの半分以下</strong>。
+            バスボム本体を直接押さえる構造になるので、押さえる手の圧力が
+            強すぎると本体側がへこみます。</li>
+        <li>🔄 一気に持ち上げず、<strong>1 mm ずつ持ち上げて様子を見る</strong>感覚で。</li>
+        <li>🌡️ 室温が低いほどバスボムは脆くなります。可能なら室温で作業を。</li>
+      </ul>
+
+      <h2 is-upgraded>失敗しても自分を責めないこと</h2>
+      <div class="label-row">
+        <span class="label-pill tip">😌 心構え</span>
+      </div>
+      <p>これは正直、<strong>慣れと運</strong>の領域です。1 個目で成功する人もいれば、
+         3 個連続で失敗する人もいます。失敗しても「化学的にはまだ完全な
+         バスボム」なので、次のステップを読んでください。</p>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="🔬 もし崩れてしまっても" duration="1">
+      <p>離型に失敗して Octocat の形が崩れてしまった——大丈夫、まだ捨てないでください。</p>
+
+      <h2 is-upgraded>化学反応はバスボムの「形」とは無関係</h2>
+      <p>バスボムの「シュワシュワ」の正体は <strong>炭酸水素ナトリウム + クエン酸 + 水
+         → 二酸化炭素</strong> という古典的な酸塩基反応。
+         この反応は <strong>バスボムの形状とまったく関係なく</strong>、
+         お風呂に入れさえすればきちんと発泡します。</p>
+
+      <h2 is-upgraded>実際にやってみた</h2>
+      <p>離型ミスで崩れたプロトタイプをお風呂に投入し、ちゃんと発泡するか
+         検証した記録動画です。</p>
+
+      <p class="image-container">
+        <img alt="崩れたバスボムがお風呂で発泡している様子" src="../../img/fizz-test.gif">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ 結果：見た目は崩れていても化学反応は問題なく機能 ✨</p>
+
+      <aside class="special">
+        <p><strong>💡 つまり</strong>：
+           離型に失敗しても、それは「ギフト適性」がなくなっただけで、
+           <strong>入浴剤としての性能は完全に保たれている</strong>ということ。
+           自分用に使えば全く問題ありません。</p>
+      </aside>
+    </google-codelab-step>
+
+    <!-- =========================================================================== -->
+    <google-codelab-step label="🎉 完了" duration="1">
+      <p>お疲れ様でした！これで Octocat バスボムの離型は完了です。</p>
+
+      <h2 is-upgraded>このガイドのまとめ</h2>
+      <ol>
+        <li>🚨 「上下に一気に引く」「横にスライド」は厳禁</li>
+        <li>✅ 背面下→腕側固定→<strong>真上にゆっくり</strong>持ち上げで片面外し</li>
+        <li>💡 そもそも完全に外さず<strong>型ごと贈る</strong>のが安全＆カッコイイ</li>
+        <li>🔬 失敗しても入浴剤としては完全に機能する（自分用に使おう）</li>
+      </ol>
+
+      <h2 is-upgraded>関連リソース</h2>
+      <ul>
+        <li>📦 <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment" target="_blank">
+            プロジェクト本体（GitHub）</a></li>
+        <li>🐱 <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/tree/main/experiments/2026-05-06-trial-02" target="_blank">
+            Trial 02 成功ログ（レシピ・配色・ギフト構成）</a></li>
+        <li>💥 <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/tree/main/experiments/2026-05-04-trial-01" target="_blank">
+            Trial 01 失敗ログ（このガイドが必要になった原因）</a></li>
+        <li>📐 <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment#stl-プレビュー" target="_blank">
+            STL プレビュー＆ダウンロード</a></li>
+      </ul>
+
+      <h2 is-upgraded>フィードバック</h2>
+      <p>「この手順で外れた／外れなかった」「コツが他にもある」など、
+         気づいたことがあれば
+         <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/issues" target="_blank">
+         GitHub Issues</a> でぜひ教えてください。</p>
+
+      <p style="margin-top:32px;font-size:14px;color:#5f6368">
+        Made with 🛁 + 🐱 + GitHub Copilot CLI</p>
+    </google-codelab-step>
+
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+</body>
+</html>

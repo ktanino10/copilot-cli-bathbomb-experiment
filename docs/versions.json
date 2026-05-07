@@ -1,0 +1,10 @@
+{
+  "defaultVersion": "v1.0.0",
+  "versions": [
+    {
+      "id": "v1.0.0",
+      "name": "v1.0.0 (2026-05-07)",
+      "path": "versions/v1.0.0/index.html"
+    }
+  ]
+}

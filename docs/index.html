@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Octocat バスボム 離型ガイド</title>
+  <meta name="description" content="3D プリント型から Octocat バスボムを崩さずに取り出すための公式ガイド。Trial 02 の実体験ベース。">
+  <meta property="og:title" content="Octocat バスボム 離型ガイド">
+  <meta property="og:description" content="3D プリント型から Octocat バスボムを崩さずに取り出す手順を解説した GitHub Pages ガイド。">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,500,700">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; font-family: 'Roboto', sans-serif; }
+    #version-selector-container {
+      position: fixed;
+      top: 12px;
+      right: 16px;
+      z-index: 10000;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #version-selector-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+    }
+    #version-selector {
+      font-size: 13px;
+      padding: 4px 8px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+    }
+    #version-selector:hover { border-color: #4F7DC9; }
+    #content-frame {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="version-selector-container">
+    <label id="version-selector-label" for="version-selector">バージョン:</label>
+    <select id="version-selector"></select>
+  </div>
+
+  <iframe id="content-frame" src="" allow="autoplay"></iframe>
+
+  <script>
+    (async function () {
+      const FALLBACK_PATH = 'versions/v1.0.0/index.html';
+      try {
+        const response = await fetch('versions.json', { cache: 'no-store' });
+        const data = await response.json();
+
+        const selector = document.getElementById('version-selector');
+        const iframe = document.getElementById('content-frame');
+
+        data.versions.forEach(version => {
+          const option = document.createElement('option');
+          option.value = version.path;
+          option.textContent = version.name;
+          option.dataset.id = version.id;
+          selector.appendChild(option);
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedVersion = urlParams.get('version');
+        let selected = data.versions.find(v => v.id === data.defaultVersion);
+        if (requestedVersion) {
+          const found = data.versions.find(v => v.id === requestedVersion);
+          if (found) selected = found;
+        }
+
+        const initialHash = window.location.hash || '';
+        iframe.src = selected.path + initialHash;
+        selector.value = selected.path;
+
+        selector.addEventListener('change', function () {
+          const selectedPath = this.value;
+          const selectedId = this.options[this.selectedIndex].dataset.id;
+          iframe.src = selectedPath + (window.location.hash || '');
+          const newUrl = new URL(window.location);
+          newUrl.searchParams.set('version', selectedId);
+          window.history.pushState({}, '', newUrl);
+        });
+
+        window.addEventListener('popstate', function () {
+          const params = new URLSearchParams(window.location.search);
+          const id = params.get('version');
+          const v = data.versions.find(x => x.id === id) ||
+                    data.versions.find(x => x.id === data.defaultVersion);
+          iframe.src = v.path + (window.location.hash || '');
+          selector.value = v.path;
+        });
+      } catch (e) {
+        console.error('Failed to load versions.json — falling back', e);
+        document.getElementById('content-frame').src = FALLBACK_PATH;
+      }
+    })();
+  </script>
+</body>
+</html>
