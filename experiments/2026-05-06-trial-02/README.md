@@ -106,9 +106,11 @@ v1 元データ          Bambu Studio で左右分割
 
 🎥 **混ぜている様子の動画**:
 
-<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/color-mixing.mp4" controls width="360" playsinline></video>
+![色付き粉を混ぜている様子](videos/color-mixing.gif)
 
-> 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/3kC7oP4pvtE) / または [`videos/color-mixing.mp4`](videos/color-mixing.mp4) を直接ダウンロード
+> 👆 上はサイレントの GIF プレビューです（README 内で自動再生）。
+> 音声付きの完全版は [YouTube Shorts](https://www.youtube.com/shorts/3kC7oP4pvtE) /
+> または [`videos/color-mixing.mp4`](videos/color-mixing.mp4) を直接ダウンロード
 
 ラップでボウルをカバーして粉の飛散と乾燥を防止。
 
@@ -201,9 +203,11 @@ v1 元データ          Bambu Studio で左右分割
 
 🎥 **検証動画**:
 
-<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/fizz-test.mp4" controls width="360" playsinline></video>
+![お風呂で発泡している様子](videos/fizz-test.gif)
 
-> 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/VPH1sM8e9gE) / または [`videos/fizz-test.mp4`](videos/fizz-test.mp4) を直接ダウンロード
+> 👆 上は冒頭 20 秒のサイレント GIF プレビューです（README 内で自動再生）。
+> 音声付き・全長 58 秒の完全版は [YouTube Shorts](https://www.youtube.com/shorts/VPH1sM8e9gE) /
+> または [`videos/fizz-test.mp4`](videos/fizz-test.mp4) を直接ダウンロード
 
 結果: **見た目が崩れていても化学反応は問題なく機能** ✨
 重曹 + クエン酸 + 水 → 二酸化炭素の発泡反応はバスボムの形状とは無関係なので、
@@ -350,9 +354,11 @@ fragrance spray.
 
 🎥 **Video of the mixing**:
 
-<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/color-mixing.mp4" controls width="360" playsinline></video>
+![Mixing colored bath bomb powders](videos/color-mixing.gif)
 
-> If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/3kC7oP4pvtE) or download [`videos/color-mixing.mp4`](videos/color-mixing.mp4) directly.
+> 👆 The above is a silent GIF preview that plays inline in the README.
+> For the full version with audio, see [YouTube Shorts](https://www.youtube.com/shorts/3kC7oP4pvtE)
+> or download [`videos/color-mixing.mp4`](videos/color-mixing.mp4) directly.
 
 Plastic wrap kept the bowls dust-free and dry until packing.
 
@@ -450,9 +456,12 @@ whether **the fizz reaction still worked** despite the broken shape.
 
 🎥 **Test video**:
 
-<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/fizz-test.mp4" controls width="360" playsinline></video>
+![Bath bomb fizzing in actual bath water](videos/fizz-test.gif)
 
-> If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/VPH1sM8e9gE) or download [`videos/fizz-test.mp4`](videos/fizz-test.mp4) directly.
+> 👆 The above is a silent GIF preview of the first 20 seconds, which plays
+> inline in the README. The full 58-second version with audio is on
+> [YouTube Shorts](https://www.youtube.com/shorts/VPH1sM8e9gE)
+> or downloadable as [`videos/fizz-test.mp4`](videos/fizz-test.mp4).
 
 Result: **the chemistry works fine even when the bath bomb is cosmetically broken** ✨
 Baking soda + citric acid + water → CO₂ fizz is independent of the bath bomb's shape,
