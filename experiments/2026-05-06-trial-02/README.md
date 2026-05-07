@@ -114,15 +114,57 @@ v1 元データ          Bambu Studio で左右分割
 
 ![クランプされた型](03-mold-clamped.jpg)
 
-#### フェーズ C: 離型
+#### フェーズ C: 離型 ⚠️ ここが一番繊細
 
-乾燥後、ゴムバンドを外して型を左右にパカッと開く。
+乾燥後、ゴムバンドを外す。**ここからが Octocat 形状で一番デリケートな工程。**
+「軽く叩けば外れる」みたいな単純な話ではないので、以下を守ってください。
+
+##### 🚨 やってはいけないこと
+- いきなり型を上下に引き剥がす → 耳・腕・触手が **ほぼ確実に折れます**
+- 型を横方向にスライドさせる → 同じく崩壊します
+
+##### ✅ 正しい「片面だけ」外し方
+1. 型を背面（フラット側）にして机に置く
+2. **腕がついている側の型半分を手でしっかり固定**
+3. もう片方の型半分を **真上にゆっくり持ち上げる**
+4. 顔と腕のあいだにある隙間を崩さないように沿わせるのがコツ
 
 ![型を開けた状態](04-demolding.jpg)
 
-軽く叩くだけでバスボムがするっと外れる。v1 の床密閉問題はこの「左右分割」だけで解決。
+うまく外れた成功例 ↓
 
 ![成功した緑バスボム](05-success-green.jpg)
+
+##### 💡 そもそも完全に外さないという選択肢（個人的おすすめ）
+
+片方を外せても、**もう片方の型を外すのが特に難しい**です。私は今回成功し
+ましたが、人によっては高確率で崩れますし、誰かに渡すときに崩壊するのも
+怖い。なので **「片方の型をつけたままお風呂に投入する」運用を強く推奨**
+します。
+
+これで問題ない理由:
+- バスボムの表面のうち **半分以上は外気に露出している** ので、
+  発泡反応に必要な水との接触面積は十二分にある（フェーズ F で実証済）
+- 崩壊リスクがゼロ
+- ギフトとして渡す場合、配送・手渡し時の破損も気にしなくていい
+- **見た目もむしろこっちの方がカッコイイ**（次項）
+
+##### 🎨 「型ごと」の方が見栄えが良い理由 — *Dragon Shading* との類似
+
+型のフチが Octocat の輪郭をくっきり縁取って見えるため、いわゆる
+**ドラゴンシェーディング**（セル／トゥーンシェーディングで強い黒輪郭線
+を描く 3D アニメ表現の技法）と近い視覚効果が生まれます。
+
+代表的な比較例:
+- 『ドラゴンボール Z』(PS2) — 普通の 3D シェーディング
+- 『ドラゴンボール Z2』(PS2) — キャラクターに **黒い輪郭線** が追加され、
+  アニメ調・劇画調が一気に強まった
+
+→ 今回のギフトは
+**(a)** 贈呈時の崩壊リスクをゼロにする
+**(b)** Octocat の輪郭がくっきり見えて見映えが良い
+…という二重のメリットから、**あえて 4 個すべて型をつけたまま箱詰め**
+しました。
 
 #### フェーズ D: 保存・梱包
 
@@ -304,16 +346,62 @@ clamp with rubber bands, and leave to cure for half a day to a full day.
 
 ![Clamped mold](03-mold-clamped.jpg)
 
-#### Phase C — Release
+#### Phase C — Release ⚠️ The most delicate step
 
-After curing, remove the rubber bands and pop the two halves apart sideways.
+After curing, remove the rubber bands. **This is the most fragile step
+when the bath bomb is shaped like an Octocat** — it's not just "tap and
+pop", so please follow the rules below.
+
+##### 🚨 What NOT to do
+- Pull the two halves apart abruptly → ears, arms and tentacles will
+  **almost certainly snap off**
+- Slide the mold halves sideways → same result, total collapse
+
+##### ✅ Correct way to release one half
+1. Lay the mold flat on its back (flat side down)
+2. **Hold the half containing the arms firmly in place** with one hand
+3. **Lift the other half straight up, slowly**, keeping it perfectly vertical
+4. The trick is to follow the natural gap between the face and the arms
+   without disturbing it
 
 ![Mold opened](04-demolding.jpg)
 
-A gentle tap is enough — the bath bomb falls out cleanly. Splitting the v1 mold L/R
-solved the "sealed floor" problem of trial-01 with **no design change at all**.
+A successful release looks like this ↓
 
 ![Successful green Octocat](05-success-green.jpg)
+
+##### 💡 Or just don't fully demold (my personal recommendation)
+
+Even after one half comes off, removing **the second half is genuinely
+hard**. I succeeded this time, but many people will crumble it; and even
+if you succeed, it could still break in transit when handing it to
+someone. So I strongly recommend **leaving one mold half attached and
+dropping the whole thing into the bath as-is**.
+
+Why this is fine:
+- More than half of the bath bomb's surface is already exposed to air,
+  so the contact area with bath water is more than sufficient for a
+  proper fizz reaction (verified in Phase F below)
+- Zero crumbling risk
+- Zero damage risk during gift transit / handover
+- **It actually looks cooler this way too** (next note)
+
+##### 🎨 Why the "in-mold" look is more visually appealing — *Dragon Shading* analogy
+
+The edge of the mold traces a clean outline around the Octocat
+silhouette, producing the same kind of visual effect as the
+**"Dragon shading"** technique — i.e. cel/toon shading with bold black
+outlines drawn on top of an otherwise 3D character.
+
+Reference comparison:
+- *Dragon Ball Z* (PS2) — standard 3D shading
+- *Dragon Ball Z2* (PS2) — characters now have **bold black outlines**,
+  making them look much more anime-/comic-styled
+
+→ For this gift, leaving the mold attached gave us
+**(a)** zero crumbling risk in transit, and
+**(b)** a sharper, more iconic Octocat silhouette
+…so all four bath bombs were boxed up still snugly inside their molds.
 
 #### Phase D — Store & pack
 
