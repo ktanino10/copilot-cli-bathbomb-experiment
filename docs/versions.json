@@ -1,10 +1,18 @@
 {
   "defaultVersion": "v1.0.0",
+  "defaultLang": "ja",
+  "languages": [
+    { "id": "ja", "name": "日本語" },
+    { "id": "en", "name": "English" }
+  ],
   "versions": [
     {
       "id": "v1.0.0",
       "name": "v1.0.0 (2026-05-07)",
-      "path": "versions/v1.0.0/index.html"
+      "paths": {
+        "ja": "versions/v1.0.0/index.html",
+        "en": "versions/v1.0.0/index_en.html"
+      }
     }
   ]
 }

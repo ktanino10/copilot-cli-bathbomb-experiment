@@ -20,6 +20,13 @@
     .label-pill.ng  { background: #fce8e6; color: #c5221f; }
     .label-pill.ok  { background: #e6f4ea; color: #137333; }
     .label-pill.tip { background: #e8f0fe; color: #1a73e8; }
+    .image-container.octocat img { max-width: 220px; border-radius: 50%; box-shadow: 0 2px 12px rgba(79,125,201,.2); background: #fff; padding: 6px; }
+    .octocat-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin: 16px 0; }
+    .octocat-row .octocat-thumb img {
+      width: 120px; height: 120px; border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12); background: #fff; padding: 4px;
+    }
+    .octocat-row .octocat-text { flex: 1; min-width: 200px; }
   </style>
 </head>
 <body>
@@ -39,6 +46,13 @@
          <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment" target="_blank">
          <code>copilot-cli-bathbomb-experiment</code></a>
          リポジトリの第2回試作 (Trial 02) における実体験を元にまとめています。</p>
+
+      <p class="image-container octocat">
+        <img alt="Bombacat — バスボム的 Octocat" src="../../img/octodex/Bombacat.png">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ <em>Bombacat</em>（バスボムのテーマソング担当）。
+        <a href="https://octodex.github.com/bombacat/" target="_blank">(出典: octodex)</a></p>
 
       <h2 is-upgraded>このガイドで分かること</h2>
       <ul>
@@ -94,6 +108,19 @@
     <google-codelab-step label="🚨 やってはいけないこと" duration="2">
       <p>離型を始める前に、<strong>絶対にやってはいけない 2 つの動作</strong>を覚えてください。
          これさえ避ければ、半分は成功したようなものです。</p>
+
+      <div class="octocat-row">
+        <div class="octocat-thumb">
+          <img alt="Boxertocat" src="../../img/octodex/Boxertocat.jpg">
+        </div>
+        <div class="octocat-text">
+          <p style="margin:0">
+            <em>Boxertocat</em> 曰く：今はボクシングの時間ではない。
+            一気に引いたり、横に殴ったりしてはダメ。
+            タイトルマッチではなく茶道のつもりで。
+          </p>
+        </div>
+      </div>
 
       <h2 is-upgraded>NG その 1：上下に一気に引き剥がす</h2>
       <div class="label-row">
@@ -170,6 +197,19 @@
          前のステップで片面は外れましたが、<strong>「もう片方の型は外さずに残す」</strong>
          という選択肢を強くおすすめします。</p>
 
+      <div class="octocat-row">
+        <div class="octocat-thumb">
+          <img alt="Yogitocat" src="../../img/octodex/Yogitocat.png">
+        </div>
+        <div class="octocat-text">
+          <p style="margin:0">
+            <em>Yogitocat</em> の教え：<strong>「手放す」ということには、
+            「もう片方の型を外したいという欲を手放す」も含まれている</strong>。
+            最も賢い離型者は、外す必要のあるものだけを外す。
+          </p>
+        </div>
+      </div>
+
       <h2 is-upgraded>なぜ完全に外さない方が良いのか</h2>
       <ul>
         <li>🎯 <strong>2 枚目の型を外すのは難易度が一段上がる</strong>。
@@ -212,6 +252,19 @@
     <google-codelab-step label="🏊 上級編：両面完全離型に挑戦" duration="3">
       <p>「いや、どうしても完全な Octocat の姿で見せたい」という方向けの
          <strong>上級編</strong>です。失敗リスクを承知のうえで挑戦してください。</p>
+
+      <div class="octocat-row">
+        <div class="octocat-thumb">
+          <img alt="Surftocat" src="../../img/octodex/Surftocat.png">
+        </div>
+        <div class="octocat-text">
+          <p style="margin:0">
+            <em>Surftocat</em> 曰く：ここからは波に乗る世界。
+            完璧に着地できる日もあれば、思いっきり転ぶ日もある。
+            両方とも経験のうち。
+          </p>
+        </div>
+      </div>
 
       <h2 is-upgraded>基本ルールは前と同じ</h2>
       <p>残った型半分を外す手順も、原則は前のステップとまったく同じです：</p>
@@ -272,6 +325,13 @@
     <google-codelab-step label="🎉 完了" duration="1">
       <p>お疲れ様でした！これで Octocat バスボムの離型は完了です。</p>
 
+      <p class="image-container octocat">
+        <img alt="Hulatocat — お祝い！" src="../../img/octodex/Hulatocat.gif">
+      </p>
+      <p style="text-align:center;font-size:13px;color:#5f6368">
+        ↑ <em>Hulatocat</em> もあなたと一緒にお祝い中。
+        <a href="https://octodex.github.com/hulatocat/" target="_blank">(出典: octodex)</a></p>
+
       <h2 is-upgraded>このガイドのまとめ</h2>
       <ol>
         <li>🚨 「上下に一気に引く」「横にスライド」は厳禁</li>
@@ -290,6 +350,8 @@
             Trial 01 失敗ログ（このガイドが必要になった原因）</a></li>
         <li>📐 <a href="https://github.com/ktanino10/copilot-cli-bathbomb-experiment#stl-プレビュー" target="_blank">
             STL プレビュー＆ダウンロード</a></li>
+        <li>🐙 <a href="https://octodex.github.com/" target="_blank">
+            GitHub Octodex（このガイドに登場した Octocat たちの出典）</a></li>
       </ul>
 
       <h2 is-upgraded>フィードバック</h2>
