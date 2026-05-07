@@ -106,7 +106,7 @@ v1 元データ          Bambu Studio で左右分割
 
 🎥 **混ぜている様子の動画**:
 
-<video src="videos/color-mixing.mp4" controls width="360" playsinline></video>
+<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/color-mixing.mp4" controls width="360" playsinline></video>
 
 > 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/3kC7oP4pvtE) / または [`videos/color-mixing.mp4`](videos/color-mixing.mp4) を直接ダウンロード
 
@@ -201,7 +201,7 @@ v1 元データ          Bambu Studio で左右分割
 
 🎥 **検証動画**:
 
-<video src="videos/fizz-test.mp4" controls width="360" playsinline></video>
+<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/fizz-test.mp4" controls width="360" playsinline></video>
 
 > 上の動画が再生できない場合は [YouTube Shorts で開く](https://www.youtube.com/shorts/VPH1sM8e9gE) / または [`videos/fizz-test.mp4`](videos/fizz-test.mp4) を直接ダウンロード
 
@@ -350,7 +350,7 @@ fragrance spray.
 
 🎥 **Video of the mixing**:
 
-<video src="videos/color-mixing.mp4" controls width="360" playsinline></video>
+<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/color-mixing.mp4" controls width="360" playsinline></video>
 
 > If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/3kC7oP4pvtE) or download [`videos/color-mixing.mp4`](videos/color-mixing.mp4) directly.
 
@@ -450,7 +450,7 @@ whether **the fizz reaction still worked** despite the broken shape.
 
 🎥 **Test video**:
 
-<video src="videos/fizz-test.mp4" controls width="360" playsinline></video>
+<video src="https://github.com/ktanino10/copilot-cli-bathbomb-experiment/raw/refs/heads/main/experiments/2026-05-06-trial-02/videos/fizz-test.mp4" controls width="360" playsinline></video>
 
 > If the embedded player above doesn't play, [open on YouTube Shorts](https://www.youtube.com/shorts/VPH1sM8e9gE) or download [`videos/fizz-test.mp4`](videos/fizz-test.mp4) directly.
 
